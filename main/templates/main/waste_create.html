@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+BeEco | Создать Отход
+{% endblock %}
+
+{% block wrapper %}
+<div class="modal fade" id="recInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Рекомендация</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="rec-text">
+
+            </div>
+            <div class="modal-footer" id="rec-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block main %}
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-success">Добавить отход</h6>
+            </div>
+            <div class="card-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="recommendation" class="col-12 col-md-6">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'main/js/getRecommendation.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+BeEco | Все Отходы
+{% endblock %}
+
+{% block css %}
+<!-- Custom styles for this page -->
+<link href="{% static 'main/libs/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+{% include 'main/components/_waste_table.html' %}
+{% endblock %}
+
+{% block js %}
+<!-- Page level plugins -->
+<script src="{% static 'main/libs/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'main/libs/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'main/libs/js/demo/datatables-demo.js' %}"></script>
+
+{% endblock %}

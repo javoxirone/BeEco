@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+BeEco | Журнал активности
+{% endblock %}
+
+{% block main %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">Журнал активности</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {% for task in user_badges %}
+            <div class="card mx-2" style="width: 18rem;">
+                <div class="text-center">
+                    <img src="{{ task.badge.image.url }}" alt="Card image cap" style="max-height: 300px; max-width: 100%;">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-success">{{ task.badge.title }}</h5>
+                    <p class="card-text">{{ task.badge.description }}</p>
+                </div>
+                <div class="card-footer bg-success text-white font-weight-bold">
+                    Получено
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for task in badges %}
+            <div class="card mx-2" style="width: 18rem; opacity: 0.3">
+                <div class="text-center">
+                    <img src="{{ task.image.url }}" alt="Card image cap" style="max-height: 300px; max-width: 100%;">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-dark">{{ task.title }}</h5>
+                    <p class="card-text">{{ task.description }}</p>
+                </div>
+                <div class="card-footer bg-dark text-white font-weight-bold">
+                    Не получено
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

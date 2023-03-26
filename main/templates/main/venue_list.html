@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}BeEco | Venue List{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+<!-- Custom styles for this page -->
+<link href="{% static 'main/libs/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<div class="row" style="gap: 16px;">
+    <div class="col-12">
+        <div id="map" style="width: 100%;height: 600px;border-radius: 15px;"></div>
+    </div>
+    <div class="col-12">
+        {% include 'main/components/_venue_table.html' %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<!-- Page level plugins -->
+<script src="{% static 'main/libs/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'main/libs/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'main/libs/js/demo/datatables-demo.js' %}"></script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+<script>
+
+    const map = L.map('map', {
+        center: [41.314935460268934, 69.24642042315372],
+        zoom: 11
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+
+    window.addEventListener('load', () => {
+        handleRecommendation()
+    })
+
+
+    function handleRecommendation() {
+        $.ajax({
+            url: `${window.location.protocol}//${window.location.host}/api/get-all-venues-locations/`,
+            type: "get", //send it through get method
+            success: function (response) {
+                for (el of response) {
+                    let point = L.marker([el.lat, el.lon]).addTo(map)
+                    point.bindPopup(`
+                        <img src="/media/${el.image}" alt="${el.title}" width="100%">
+                        <h3 class="my-3">${el.title}</h3>
+                        <a href="${el.location}" class="btn btn-success text-white"><span class="mr-2">В Путь</span> <i class="fa-solid fa-location-arrow"></i></a>
+                    `);
+                }
+
+            },
+            error: function (xhr) {
+                console.log(xhr)
+            }
+        });
+    }
+</script>
+{% endblock %}

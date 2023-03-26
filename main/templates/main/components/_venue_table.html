@@ -1,0 +1,42 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">Места сбора</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Рисунок</th>
+                    <th>Заголовок</th>
+                    <th>Локация</th>
+                </tr>
+                </thead>
+
+                <tfoot>
+                <tr>
+                    <th>Рисунок</th>
+                    <th>Заголовок</th>
+                    <th>Локация</th>
+                </tfoot>
+
+                <tbody>
+                {% for venue in venues %}
+                <tr>
+                    <td><img src="{{ venue.image.url }}" alt="{{ venue.title }}" width="100px" height="auto"></td>
+                    <td>{{ venue.title }}</td>
+                    <td><a href="{{ venue.location }}" class="btn btn-success"><span class="mr-2">В Путь</span> <i
+                            class="fa-solid fa-location-arrow"></i></a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">Не найдно</td>
+                </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

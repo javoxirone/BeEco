@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}BeEco | LogIn{% endblock %}
+
+
+{% block sidebar %}
+{% endblock %}
+{% block topbar %}
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block main %}
+{% endblock %}
+{% block wrapper %}
+
+<div class="bg-light">
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url('https://img.graphicsurf.com/2020/06/Ecology-concept-with-Earth-illustration.jpg'); background-size: contain; background-repeat: no-repeat"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Регистрация</h1>
+                                    </div>
+                                    <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data" class="user">
+                                        {% csrf_token %}
+                                        {{ p_form.as_p }}
+                                        {{ form.as_p }}
+                                        <button type="submit" class="btn btn-success btn-block">
+                                            Зарегистрироваться
+                                        </button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="{% url 'login' %}">Войти в существующий аккаунт!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

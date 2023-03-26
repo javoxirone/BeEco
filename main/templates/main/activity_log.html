@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+BeEco | Журнал активности
+{% endblock %}
+
+{% block main %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">Журнал активности</h6>
+    </div>
+    <div class="card-body">
+        {% for log in logs %}
+        <div class="card mb-4 p-3 border-left-warning d-flex flex-row justify-content-between"><div>{{ log.title }}</div><div>{{ log.created_at|date }}</div></div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

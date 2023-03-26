@@ -1,0 +1,64 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">Отходы</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Заголовок</th>
+                    <th>Категория</th>
+                    <th>Место сбора</th>
+                    <th>Локация</th>
+                    <th>Вес</th>
+                    <th>Дата</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+
+                <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Заголовок</th>
+                    <th>Категория</th>
+                    <th>Место сбора</th>
+                    <th>Локация</th>
+                    <th>Вес</th>
+                    <th>Дата</th>
+                    <th>Действия</th>
+                </tr>
+                </tfoot>
+
+                <tbody>
+                {% for waste in wastes %}
+                <tr>
+                    <td>{{ waste.pk }}</td>
+                    <td>{{ waste.title }}</td>
+                    <td>{{ waste.category.title }}</td>
+                    <td>{{ waste.venue.title }}</td>
+                    <td><a href="{{ waste.venue.location }}">Локация</a></td>
+                    <td>{{ waste.weight }} {{ waste.unit.unit }}</td>
+                    <td>{{ waste.created_at|date }}</td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-around">
+                            <div class="text-center">
+                                <a href="{{ waste.get_update_url }}" class="btn-link text-gray" style="font-size: 18px"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
+                            </div>
+                            <div class="text-center">
+                                <a href="{{ waste.get_delete_url }}" class="btn-link text-danger" style="font-size: 18px"><i
+                                        class="fa-solid fa-trash"></i></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="8" class="text-center">Не найдно</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
