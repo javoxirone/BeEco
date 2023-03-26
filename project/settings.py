@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-@wlpfs&hft*%&%qqtysu3q6%ldto#c!w5ul1mji2i+l2xjb&ei
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['beeco.pythonanywhere.com', '127.0.0.1:8000']
 
 # Application definition
 
@@ -126,7 +126,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_HOST = "http://javoxirone.pythonanywhere.com/" if not DEBUG else ""
+STATIC_HOST = "http://beeco.pythonanywhere.com/" if not DEBUG else ""
 
 STATIC_ROOT = BASE_DIR / 'static'
 
@@ -139,7 +139,7 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIAFILES_STORAGE = "whitenoise.storage.CompressedManifestMediaFilesStorage"
 
-MEDIA_HOST = "http://javoxirone.pythonanywhere.com/" if not DEBUG else ""
+MEDIA_HOST = "http://beeco.pythonanywhere.com/" if not DEBUG else ""
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
