@@ -126,6 +126,6 @@ class ProfileImageUpdateForm(forms.ModelForm):
         widgets = {
             'image': forms.FileInput(attrs={
                 "id": "image",
-                "class": "custom-file"
+                "class": "custom-file",
             })
         }
