@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from colorfield.fields import ColorField
 # Create your models here.
 from django.urls import reverse
 
@@ -24,6 +24,7 @@ class ProfileImage(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=250, unique=True, null=False, blank=False, verbose_name="Категория")
     image = models.ImageField(upload_to="category/", null=False, blank=False, verbose_name="Рисунок")
+    color = ColorField(default="#ffffff", null=True, blank=True, verbose_name="Цвет")
     score = models.IntegerField(null=False, blank=False, verbose_name="Балл")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 

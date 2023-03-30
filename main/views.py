@@ -132,13 +132,16 @@ def dashboard_view(request):
 
     pie_data = []
 
-    hashmap = defaultdict(int)
-
+    hashmap = dict()
     categories = Category.objects.all()
 
     for category in categories:
-        hashmap[category.title] += sum(list(Waste.objects.filter(user=request.user, category=category).values_list("weight", flat=True)))
+        hashmap[category.title] = dict()
+        hashmap[category.title]['weight'] = sum(
+            list(Waste.objects.filter(user=request.user, category=category).values_list("weight", flat=True)))
+        hashmap[category.title]['color'] = Category.objects.get(pk=category.pk).color
     context['pie_data'] = json.dumps(hashmap)
+    context['categories'] = Category.objects.order_by('-title').values('title', 'color')
 
     return render(request, 'main/dashboard.html', context)
 

@@ -4,16 +4,15 @@ Chart.defaults.global.defaultFontColor = '#858796';
 let pieData = JSON.parse(document.querySelector('#myPieChart').getAttribute('data-pie-wastes'))
 let pieNames = []
 let pieQuantity = []
-
+let pieColors = []
 for (item in pieData){
     pieNames.push(item)
-    console.log(item)
 }
 for (item of Object.values(pieData)){
-    pieQuantity.push(item)
+    pieQuantity.push(item.weight)
+    pieColors.push(item.color)
 }
-console.log(pieNames)
-console.log(pieQuantity)
+console.log(pieColors)
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
@@ -22,8 +21,8 @@ var myPieChart = new Chart(ctx, {
         labels: pieNames,
         datasets: [{
             data: pieQuantity,
-            backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#7a7a7a'],
-            hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#7d7d7d'],
+            backgroundColor: pieColors,
+            hoverBackgroundColor: pieColors,
             hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
     },

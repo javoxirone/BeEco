@@ -46,7 +46,6 @@ function handleRecommendation() {
                 `
         },
         error: function (xhr) {
-            console.log(xhr)
             document.querySelector("#recommendation").innerHTML = ''
         }
     });

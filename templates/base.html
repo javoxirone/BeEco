@@ -107,12 +107,10 @@
 <!-- Custom scripts for all pages-->
 <script src="{% static 'main/libs/js/sb-admin-2.min.js' %}"></script>
 
-<!-- Page level plugins -->
-<script src="{% static 'main/libs/vendor/chart.js/Chart.min.js' %}"></script>
+{% block charts %}
+{% endblock %}
 
-<!-- Page level custom scripts -->
-<script src="{% static 'main/libs/js/demo/chart-area-demo.js' %}"></script>
-<script src="{% static 'main/libs/js/demo/chart-pie-demo.js' %}"></script>
+
 {% block js %}
 {% endblock %}
 </body>
